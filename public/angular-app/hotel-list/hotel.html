@@ -1,0 +1,9 @@
+<p><h1>{{hotelctrl.name}}</h1></p>
+<div>
+    <ul>    
+        <li ng-repeat="hotel in hotelctrl.hotels"><a ng-href="#/hotels/{{hotel._id}}">
+            {{hotel.name}}
+            </a>
+        </li>
+    </ul>
+</div>  

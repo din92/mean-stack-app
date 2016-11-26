@@ -1,0 +1,47 @@
+<div>
+    <h1> Hotel Name: {{hotelDatactrl.hotel.name}} <hotel-rating stars = "hotelDatactrl.stars"></hotel-rating></h1>
+    <br />
+</div>
+<div>
+    <h1> Hotel Description</h1>
+<p>{{hotelDatactrl.hotel.description}}</p>
+<div>
+    <h1>Services offered:</h1>
+    <div ng-repeat = "service in hotelDatactrl.hotel.services">
+        <ul>
+            <li>
+                {{service}}
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div>
+    <div><h1>Reviews</h1></div>
+    <div ng-repeat="review in hotelDatactrl.hotel.reviews"> 
+        <ul>
+            <li>{{review.name}} says {{review.review}} 
+                <span ng-repeat="rating in [] | range:5" class = "glyphicon glyphicon-star">{{review.rating}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div ng-if="hotelDatactrl.isLoggedIn()"><p><h3>Add your review:</h3></p>
+    <form name = "hotelDatactrl.reviewForm" ng-submit="hotelDatactrl.validateAndPostData()">
+      
+      <div>  Review :<input name="review" type ="text" ng-minlength="3"  required ng-model="hotelDatactrl.review"></input>
+        <div ng-show="hotelDatactrl.reviewForm.review.$dirty && hotelDatactrl.isSubmitted">
+            <p>Please add a review</p>
+        </div>
+      </div>
+        
+      <p>  Rating :<input name="rating" type ="number" min="0" max="5" required  ng-pattern="/^[1-5]$/" ng-model="hotelDatactrl.rating"></input>
+        <div ng-show="hotelDatactrl.reviewForm.rating.$dirty && hotelDatactrl.reviewForm.rating.$invalid && hotelDatactrl.isSubmitted">
+         <p>Rating must be between 1-5.</p>
+      </div>
+      </p>
+      <p>  <button value="submit" class="btn btn-primary">submit review</button></p>
+    </form>
+</div>
+</div>

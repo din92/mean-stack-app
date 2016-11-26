@@ -1,0 +1,32 @@
+<div>
+    <p><h1>Register User</h1></p>
+    <div>
+        <form ng-submit="regctrl.registerUser()" name="registerForm">
+            <div>
+            
+            <table class="table"> 
+                <tbody> 
+           <tr>
+                <td><h4>Name:</h4></td>
+                <td><input type="text" class="form-control"  ng-model="regctrl.name" required>{{regctrl.name}}</td><br/>    
+            </tr>
+            <tr>
+               <td><h4> User Name:</h4></td>
+               <td><input type="text" class="form-control"  ng-model="regctrl.username" required></td><br/> 
+            </tr>
+               <td> <h4>Password:</h4></td>
+               <td><input type="password" class="form-control" ng-model="regctrl.password" required></td><br/> 
+            <tr>
+               <td> <h4>Confirm Password:</h4></td>
+               <td><input type="password" class="form-control" ng-model="regctrl.conPassword" required></td><br/> 
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            <div><centre><button class="btn btn-success">Register</button></centre></div>
+        </form>
+        <div ng-if="regctrl.isSubmitted">
+                <p><h2>{{regctrl.message}}</h2></p>
+        </div>
+    </div>
+</div>
