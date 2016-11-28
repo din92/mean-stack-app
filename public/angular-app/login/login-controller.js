@@ -7,6 +7,12 @@ vm.isLoggedIn = function(){
     else
     return false;
 }
+vm.isAdmin = function(){
+    if(AuthFactory.isAdmin)
+    return true;
+    else
+    return false;
+}
 vm.login = function(){
     if(vm.username && vm.password){
         var user={
@@ -17,13 +23,19 @@ vm.login = function(){
             if(response.status===200){
                 $window.sessionStorage.token = response.data.token;
                 AuthFactory.isloggedIn = true;
+                vm.unauthorized =false;
+                if(response.data.admin===true)
+                AuthFactory.isAdmin = true;
                 var token = $window.sessionStorage.token;
                 vm.loggedInUser=jwtHelper.decodeToken(token).username;
                 $route.reload();
+                $location.path("/");
             }
             
+            
         }).catch(function(err){
-            console.log(err);
+            if(err.status===404)
+            vm.unauthorized =true;
         });
     }
 }

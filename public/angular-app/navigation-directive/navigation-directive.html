@@ -15,14 +15,17 @@
        <li ng-class="vm.isActiveTab('hotels')"><a href="#/hotels">Hotels</a></li>
        <li ng-class="vm.isActiveTab('register')" ng-if="!vm.isLoggedIn()"><a href="#/register">Register</a></li>
        <li ng-class="vm.isActiveTab('profile')" ng-if="vm.isLoggedIn()"><a href="#/profile">Profile</a></li>
+       <li ng-class="vm.isActiveTab('addHotel')" ng-if="vm.isLoggedIn() && vm.isAdmin()"><a href="#/addHotel">Add Hotel</a></li>
      </ul>
      <form ng-if="!vm.isLoggedIn()" class="navbar-form navbar-right" role="login" ng-submit="vm.login()">
       <div class="form-group" ng-class="{'has-error': vm.error}">
-        <input type="text" class="form-control input-sm" placeholder="Username" ng-model="vm.username" autocapitalize="none">
+        <input type="text" class="form-control input-sm" placeholder="Username" ng-model="vm.username" autocapitalize="none"  required>
       </div>
       <div class="form-group" ng-class="{'has-error': vm.error}">
-        <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.password" autocapitalize="none">
+        <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.password" autocapitalize="none" required>
       </div>
+      <div class="alert alert-danger" ng-if="vm.unauthorized">
+      <strong>Invalid Login</strong></div>
       <button type="submit" class="btn btn-sm btn-success">Login</button>
     </form>
     <ul ng-if="vm.isLoggedIn()" class="nav navbar-nav navbar-right">

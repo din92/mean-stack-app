@@ -20,6 +20,11 @@ function hotelDataFactory($http) {
        return $http.post("/api/hotels/" + id + "/reviews", postData).then(complete).catch(failed);
 
     }
+     function postHotelData(postData) {
+
+       return $http.post("/api/hotels/", postData).then(complete).catch(failed);
+
+    }
 
     function complete(response) {
         return response;

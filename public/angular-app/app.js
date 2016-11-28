@@ -38,6 +38,14 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                                         restricted:true
                                     }
                                 }) 
+                                .when("/addHotel", {
+                                    templateUrl:"angular-app/addHotel/addHotel.html",
+                                    controller:"addHotel",
+                                    contollerAs:"addHotelctrl",
+                                    access:{
+                                        restricted:true
+                                    }
+                                }) 
                                 .otherwise({
                                     redirectTo :"/"
                                 });

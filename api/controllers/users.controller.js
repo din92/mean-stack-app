@@ -42,11 +42,19 @@ usermodel
 			console.log("Failure logging in the user");
 			res.status(400).json(err);
 		}
+		else if(!user){
+			console.log("user not found");
+			res.status(404).json({"message":"User not found"});
+		}
 		else
 		{ if(bcrypt.compareSync(password,user.password)){
 			var token= jwt.sign({username:user.username},'asdsa',{expiresIn:3600});
 			console.log("The user is successfully logged in");
-			res.status(200).json({"message":"login success","token":token});
+			var result = {
+				token:token,
+				admin:user.admin
+			}
+			res.status(200).json(result);
 		}
 			else{
 				console.log("Unauthorized");
