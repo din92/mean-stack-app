@@ -4,7 +4,8 @@ function hotelDataFactory($http) {
     return {
         getAllHotelList: getAllHotelList,
         getHotelData: getHotelData,
-        postReviewData: postReviewData
+        postReviewData: postReviewData,
+        postHotelData:postHotelData
     }
     function getAllHotelList() {
         return $http.get("/api/hotels?count=10").then(complete).catch(failed);

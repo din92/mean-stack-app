@@ -1,7 +1,9 @@
-app.factory("AuthFactory",function(){
-    return{
-        auth:auth={isloggedIn:false,
-                   isAdmin:false }
+app.factory("AuthFactory", function () {
+    return {
+        auth: auth = {
+            isloggedIn: false,
+            isAdmin: false
+        }
     };
-  
+
 });

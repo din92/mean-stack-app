@@ -39,9 +39,9 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                                     }
                                 }) 
                                 .when("/addHotel", {
-                                    templateUrl:"angular-app/addHotel/addHotel.html",
-                                    controller:"addHotel",
-                                    contollerAs:"addHotelctrl",
+                                    templateUrl:"angular-app/add-Hotel/add-Hotel.html",
+                                    controller:"addHotelController",
+                                    controllerAs:"addHotelctrl",
                                     access:{
                                         restricted:true
                                     }

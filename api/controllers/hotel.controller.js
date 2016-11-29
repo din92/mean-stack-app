@@ -225,7 +225,7 @@ if(req.body && req.body.name && req.body.stars)
     });
 }
 else{
-  console.log(req.body+" "+req.body.name+" "+req.body.stars)
+  console.log(req.body+" "+req.body.name+" "+redq.body.stars)
   console.log("Data  Cannot be stored");
   res
     .status(400)

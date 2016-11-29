@@ -26,7 +26,7 @@ app.factory("AuthInterceptor",function($window,$q,AuthFactory,$location){
     function responseError(rejection){
         if(rejection.status === 401 || rejection.status === 403){
             AuthFactory.isloggedIn=false;
-            delete $window.sessionStorage.token;
+            delete $window.sessionStorage;
             $location.path("/");
         }
         return $q.reject(rejection);

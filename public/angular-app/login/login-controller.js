@@ -1,6 +1,6 @@
 app.controller("LoginController",function($http,$location,$window,AuthFactory,jwtHelper,$route){
 var vm = this;
-
+vm.loggedInUser = ($window.sessionStorage.token)? jwtHelper.decodeToken($window.sessionStorage.token).username:" ";
 vm.isLoggedIn = function(){
     if(AuthFactory.isloggedIn)
     return true;
@@ -8,10 +8,10 @@ vm.isLoggedIn = function(){
     return false;
 }
 vm.isAdmin = function(){
-    if(AuthFactory.isAdmin)
-    return true;
-    else
-    return false;
+    if($window.sessionStorage.isAdmin)
+     return true;
+     else
+     return false;
 }
 vm.login = function(){
     if(vm.username && vm.password){
@@ -25,7 +25,11 @@ vm.login = function(){
                 AuthFactory.isloggedIn = true;
                 vm.unauthorized =false;
                 if(response.data.admin===true)
-                AuthFactory.isAdmin = true;
+                {
+                    AuthFactory.isAdmin = true;
+                    $window.sessionStorage.isAdmin=true;
+
+                }
                 var token = $window.sessionStorage.token;
                 vm.loggedInUser=jwtHelper.decodeToken(token).username;
                 $route.reload();
@@ -42,7 +46,9 @@ vm.login = function(){
 
 vm.logout = function(){
     AuthFactory.isloggedIn=false;
+    AuthFactory.isAdmin = false;
      delete $window.sessionStorage.token;
+     delete $window.sessionStorage.isAdmin;
     $location.path("/");
 }
 vm.isActiveTab = function(url) {
