@@ -4,4 +4,7 @@ app.controller("hotelController",function(hotelDataFactory){
                                 vm.hotels = response.data;
                             });
                         vm.name="Mean Hotel App";
+                        vm.checked = function(){
+                        	vm.clicked = true;
+                        }
                     });

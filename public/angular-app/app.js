@@ -32,6 +32,14 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                                         restricted:false
                                     }
                                 }) 
+                                 .when("/hotels/:id/rooms", {
+                                    templateUrl:"angular-app/hotel-display/hotel-rooms.html",
+                                    controller:"hotelroomsController",
+                                    controllerAs:"vm",
+                                    access:{
+                                        restricted:false
+                                    }
+                                })
                                 .when("/profile", {
                                     templateUrl:"angular-app/profile/profile.html",
                                     access:{

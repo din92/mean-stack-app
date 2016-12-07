@@ -1,0 +1,22 @@
+<div>
+    <h1> Hotel Name: {{vm.hotel.name}} <hotel-rating stars = "vm.stars"></hotel-rating></h1>
+    <br />
+</div>
+<div>
+    <h3> Hotel Rooms</h3>
+    <div >
+        <ul ng-repeat="room in vm.rooms">
+          <li style="background: black">
+              <form>
+                <fieldset>
+                  <legend>{{room.type}}</legend>
+                      <p>Number: {{room.number}}</p>
+                      <p>Description: {{room.description}}</p>
+                      <p>Photos: {{room.photos}}</p>
+                      <p>Price: {{room.price}}</p>
+                </fieldset>
+            </form> 
+          </li>
+        </ul>
+    </div>
+</div>
