@@ -4,7 +4,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 
-var routes = require('./api/routes');
+var routes = require('./api/routes/index');
 
 // Define the port to run on
 app.set('port', 3000);

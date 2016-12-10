@@ -8,7 +8,7 @@ vm.isLoggedIn = function(){
     return false;
 }
 vm.isAdmin = function(){
-    if($window.sessionStorage.isAdmin)
+    if(AuthFactory.isAdmin)
      return true;
      else
      return false;

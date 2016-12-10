@@ -15,6 +15,7 @@ app.controller("hotelDataController",function($routeParams,$route,hotelDataFacto
     else
     return false;
 }
+
     vm.validateAndPostData= function()
     {
 		var token = jwtHelper.decodeToken($window.sessionStorage.token);
