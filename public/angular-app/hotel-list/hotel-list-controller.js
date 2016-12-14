@@ -1,6 +1,8 @@
 app.controller("hotelController",function(hotelDataFactory,$window,$route,AuthFactory){
                         var vm = this;
+						vm.hotels =undefined;
                           hotelDataFactory.getAllHotelList().then(function(response){
+							  console.log(response);
                                 vm.hotels = response.data;
                             });
                         vm.name="Mean Hotel App";

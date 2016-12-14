@@ -5,8 +5,8 @@
 <div>
     <h3> Hotel Rooms</h3>
     <div >
-        <ul ng-repeat="room in vm.rooms">
-          <li style="background: black">
+        <div ng-repeat="room in vm.rooms">
+          <div style="background: #2b3e50">
               <form>
                 <fieldset>
                   <legend>{{room.type}}</legend>
@@ -16,7 +16,7 @@
                       <p>Price: {{room.price}}</p>
                 </fieldset>
             </form> 
-          </li>
-        </ul>
+          </div>
+        </div>
     </div>
 </div>

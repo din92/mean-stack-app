@@ -11,24 +11,42 @@ var name = req.body.name;
 var password = req.body.password;
 
 usermodel.create({
-	username:username,
-	name : name,
-	password:bcrypt.hashSync(password,bcrypt.genSaltSync(10))
-},function(err,user){
-	if(err){
-		console.log("error registering the user");
-		res.status(400).json(err);
-	}
-	else if(!user){
-		console.log("user cannot be registered");
-		res.status(404).json({"message":"user cannot be registered"});
-	}
-	else
-	{
-		console.log("User successfully registered");
-		res.status(201).json(user);
-	}
-});
+		username:username,
+		name : name,
+		password:bcrypt.hashSync(password,bcrypt.genSaltSync(10))
+		},function(err,user){
+		if(err){
+			console.log("error registering the user " + err);
+			res.status(400).json(err);
+		}
+		else if(!user){
+			console.log("user cannot be registered");
+			res.status(404).json({"message":"user cannot be registered"});
+		}
+		else
+		{
+			console.log("User successfully registered");
+			res.status(201).json(user);
+		}
+	});
+}
+module.exports.findUser=function(req,res){
+var username = req.params.username;
+usermodel.findOne({username:username})
+		.exec(function(err,user){
+			if(err){
+				console.log("Some error occured in finding the user "+err);
+				res.status(400).json(err);
+			}
+			else if(!user){
+				console.log("user not found");
+				res.status(404).json({"message":"User not found"});
+			}
+			else{
+				console.log("User with the username already exist");
+				res.status(200).json({"message":"User with the username already exist"});
+			}
+		});
 }
 
 module.exports.loginUser = function(req,res){

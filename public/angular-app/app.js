@@ -1,6 +1,7 @@
 var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
-                    .config(function($routeProvider,$httpProvider){
+                    .config(function($routeProvider,$httpProvider,$locationProvider){
                        $httpProvider.interceptors.push('AuthInterceptor');//activating the interceptor
+                       $locationProvider.html5Mode(true);
                             $routeProvider
                                 .when("/",{
                                     templateUrl:"angular-app/Home-page/home.html",

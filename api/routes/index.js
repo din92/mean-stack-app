@@ -35,6 +35,10 @@ router
 router
   .route('/users/register')
   .post(ctrlUser.registerUser);
+
+router
+  .route('/users/:username')
+  .get(ctrlUser.findUser);
     
 
 module.exports = router;

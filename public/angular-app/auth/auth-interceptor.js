@@ -13,8 +13,6 @@ app.factory("AuthInterceptor",function($window,$q,AuthFactory,$location){
          return request;
     }
     function response(response){
-        console.log(response);
-
         if(response.status === 200 && $window.sessionStorage.token && !AuthFactory.isloggedIn){
             AuthFactory.isloggedIn=true;
             if(response.data.admin)

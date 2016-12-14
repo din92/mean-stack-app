@@ -25,8 +25,8 @@
             </div>
             <div style = "text-align:center"><button class="btn btn-success" >Register</button></div>
         </form>
-        <div ng-if="regctrl.isSubmitted">
-                <p><h2>{{regctrl.message}}</h2></p>
+        <div ng-if="regctrl.isSubmitted" class="{{regctrl.class}}">
+                <h4>{{regctrl.message}}</h4>
         </div>
     </div>
 </div>
