@@ -5,6 +5,8 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                             $routeProvider
                                 .when("/",{
                                     templateUrl:"angular-app/Home-page/home.html",
+                                    controller:"homeController",
+                                    controllerAs:"vm",
                                     access:{
                                         restricted:false
                                     }
