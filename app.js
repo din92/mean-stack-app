@@ -24,7 +24,7 @@ app.use('/hotels', function(req, res) {
 });*/
 
 //Declaring body-parser for the pos	ted forms
-app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.urlencoded({extended:false}));  
 app.use(bodyparser.json());
 
 //Defining routes for the api
