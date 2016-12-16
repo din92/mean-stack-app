@@ -38,7 +38,8 @@ router
 
 router
   .route('/users/:username')
-  .get(ctrlUser.findUser);
+  .get(ctrlUser.findUser)
+  .put(ctrlUser.updateUser)
     
 
 module.exports = router;

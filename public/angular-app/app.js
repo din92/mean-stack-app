@@ -53,6 +53,8 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                                 }) 
                                 .when("/profile", {
                                     templateUrl:"angular-app/profile/profile.html",
+                                    controller:"profileController",
+                                    controllerAs:"vm",
                                     access:{
                                         restricted:true
                                     }

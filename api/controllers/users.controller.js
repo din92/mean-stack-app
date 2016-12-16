@@ -43,12 +43,46 @@ usermodel.findOne({username:username})
 				res.status(404).json({"message":"User not found"});
 			}
 			else{
-				console.log("User with the username already exist");
-				res.status(200).json({"message":"User with the username already exist"});
+				console.log("User found");
+				res.status(200).json(user);
 			}
 		});
 }
 
+//Update user
+module.exports.updateUser=function(req,res){
+var username = req.params.username;
+usermodel.findOne({username:username})
+		.exec(function(err,user){
+			if(err){
+				console.log("Some error occured in finding the user "+err);
+				res.status(400).json(err);
+			}
+			else if(!user){
+				console.log("user not found");
+				res.status(404).json({"message":"User not found"});
+			}
+			else{
+				console.log("User found to update");
+				user.name = req.body.name;
+				user.username=username;
+				user.save(function(err,updated){
+					if(err){
+						console.log("Some error occured in updating the user "+err);
+						res.status(500).json(err);
+					}
+					else if(!updated){
+						console.log("Failure in updating user");
+						res.status(400).json({"message":"Failure in updating user"});
+					}
+					else{
+						console.log("User data updated");
+						res.status(204).json(updated);
+					}
+				})
+			}
+		});
+}
 module.exports.loginUser = function(req,res){
 var username = req.body.username;
 var password = req.body.password;

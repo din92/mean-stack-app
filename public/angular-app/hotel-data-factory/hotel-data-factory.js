@@ -7,7 +7,9 @@ function hotelDataFactory($http) {
         postReviewData: postReviewData,
         postHotelData:postHotelData,
         deleteHotelData:deleteHotelData,
-        updateHotelData:updateHotelData
+        updateHotelData:updateHotelData,
+        getUser:getUser,
+        updateUser:updateUser
     }
     function getAllHotelList() {
         return $http.get("/api/hotels?count=10").then(complete).catch(failed);
@@ -16,6 +18,15 @@ function hotelDataFactory($http) {
 
         var ans = $http.get("/api/hotels/" + id).then(complete).catch(failed);
         return ans;
+    }
+    function getUser(username) {
+
+        var ans = $http.get("/api/users/" + username).then(complete).catch(failed);
+        return ans;
+    }
+    function updateUser(username,details) {
+
+        return ans = $http.put("/api/users/" + username,details).then(complete).catch(failed);
     }
     function deleteHotelData(id) {
 
