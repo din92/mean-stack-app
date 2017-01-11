@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <base href="/">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>MEAN hotel</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet"/>
-  <!--<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>-->
+  <!--<link href="css/bootstrap.min.css" rel="stylesheet"/>-->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link href="css/custom.css" rel="stylesheet"/>
 </head>
-<body ng-app="meanHotel" s>
+<body ng-app="meanHotel" class="home">
   <mh-navigation></mh-navigation>
   <br/>
   <br/>
   <div class="container" >
    <div ng-view></div>
-  </div>
-
+</div>
 <div>
   <footer class="footer">
     <div class="container">
       <p class="text-muted text-center">
-        <a href="http://fullstacktraining.com" target="_blank"><img height="26" alt="Full Stack Training"/></a>
-      </p>
-
-      <p class="text-muted text-center">
+        <h3>Full Stack Training</h3>
         <small>&copy; 2015 Full Stack Training Ltd</small>
       </p>
     </div>
@@ -30,10 +29,15 @@
   <!--<script src="jquery/jquery-2.1.4.min.js"></script>-->
   <script src="node_modules/angular/angular.js"></script>
   <script src="node_modules/angular-route/angular-route.js"></script>
-  <script src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
+  <script src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <script src="angular-app/app.js"></script>
+  <script src="angular-app/Home-page/home.js"></script>
   <script src="angular-app/hotel-list/hotel-list-controller.js"></script>
   <script src="angular-app/hotel-display/hotel-data-controller.js"></script>
+  <script src="angular-app/hotel-display/hotel-update-controller.js"></script>
+  <script src="angular-app/hotel-display/hotel-rooms-controller.js"></script>
   <script src="angular-app/hotel-data-factory/hotel-data-factory.js"></script>
   <script src="angular-app/hotel-rating/hotel-rating.js"></script>
   <script src="angular-app/review-filter/review-filter.js"></script>
@@ -41,6 +45,7 @@
   <script src="angular-app/navigation-directive/navigation-directive.js"></script>
    <script src="angular-app/login/login-controller.js"></script>
     <script src="angular-app/add-Hotel/add-Hotel.js"></script>
+    <script src="angular-app/profile/profile.js"></script>
    <script src="angular-app/auth/auth-factory.js"></script>
    <script src="angular-app/auth/auth-interceptor.js"></script>
   

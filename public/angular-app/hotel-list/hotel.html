@@ -1,9 +1,14 @@
 <p><h1>{{hotelctrl.name}}</h1></p>
 <div>
     <ul>    
-        <li ng-repeat="hotel in hotelctrl.hotels"><a ng-href="#/hotels/{{hotel._id}}">
-            {{hotel.name}}
-            </a>
+        <li ng-repeat="hotel in hotelctrl.hotels">
+            <h3>{{hotel.name}}</h3>   
+            <div>
+            	<span><a ng-href="/hotels/{{hotel._id}}" role ="button" class = "btn btn-primary">View Hotel</a>
+            	<span><a ng-href="/hotels/{{hotel._id}}/rooms" role ="button" class = "btn btn-primary">View Rooms</a>
+            	<span ng-if="hotelctrl.isAdmin()"><a ng-href="/hotels/{{hotel._id}}/update" role ="button" class = "btn btn-primary">Update Hotel</a>
+            	<span ng-if="hotelctrl.isAdmin()"><button class="btn btn-primary" ng-click="hotelctrl.deleteHotel(hotel._id,hotel.name)">Delete Hotel</button>
+            </div>
         </li>
     </ul>
 </div>  

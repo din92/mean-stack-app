@@ -8,7 +8,7 @@ vm.isLoggedIn = function(){
     return false;
 }
 vm.isAdmin = function(){
-    if($window.sessionStorage.isAdmin)
+    if(AuthFactory.isAdmin)
      return true;
      else
      return false;
@@ -40,6 +40,11 @@ vm.login = function(){
         }).catch(function(err){
             if(err.status===404)
             vm.unauthorized =true;
+            setTimeout(function(){
+                vm.unauthorized =false;
+                $route.reload();
+            },2000);
+            
         });
     }
 }
@@ -56,4 +61,32 @@ vm.isActiveTab = function(url) {
     return (url === currentPath ? 'active' : '');
   }
 
+vm.loginOauth = function(provider){
+     $window.location.href = '/auth/' + provider;
+    //  $http.get("/auth/"+provider).then(function(response){
+    //       if(response.status===200){
+    //             $window.sessionStorage.token = response.data.token;
+    //             AuthFactory.isloggedIn = true;
+    //             vm.unauthorized =false;
+    //             if(response.data.admin===true)
+    //             {
+    //                 AuthFactory.isAdmin = true;
+    //                 $window.sessionStorage.isAdmin=true;
+
+    //             }
+    //             var token = $window.sessionStorage.token;
+    //             vm.loggedInUser=jwtHelper.decodeToken(token).username;
+    //             $route.reload();
+    //             $location.path("/");
+    //         }
+
+    //  }).catch(function(error){
+    //      if(err.status===404)
+    //         vm.unauthorized =true;
+    //         setTimeout(function(){
+    //             vm.unauthorized =false;
+    //             $route.reload();
+    //         },2000);
+    //  })
+}
 });

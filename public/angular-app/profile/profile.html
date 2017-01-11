@@ -1,1 +1,21 @@
-<h1>This is a profile page</h1>
+<h1>{{vm.message}}</h1>
+<div class="back">
+    <div class="indent">
+        <div><h3>Name: {{vm.user.name}}</h3><span ng-show="vm.editable"><input type="text" ng-model="vm.name" required></span></div>
+        <br/>
+        <div><h3>User Name: {{vm.user.username}}</h3></div>
+        <br/>
+        <div><h3>Booking History:</h3></div>
+        <br/>
+         <div>
+             <span><button class="btn btn-primary" ng-click="vm.edit()">Edit info </button></span>
+             <span><button class="btn btn-primary" ng-click="vm.submit()"> Save </button></span>
+         </div>
+         <div class="alert alert-success" ng-show="vm.updateMsg && vm.success">
+             <h1>{{vm.updateMsg}}</h1>
+         </div>
+         <div class="alert alert-danger" ng-show="vm.updateMsg && !vm.success">
+             <h1>{{vm.updateMsg}}</h1>
+         </div>
+    </div>
+</div>

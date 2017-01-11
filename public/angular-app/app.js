@@ -1,9 +1,12 @@
 var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
-                    .config(function($routeProvider,$httpProvider){
+                    .config(function($routeProvider,$httpProvider,$locationProvider){
                        $httpProvider.interceptors.push('AuthInterceptor');//activating the interceptor
+                       $locationProvider.html5Mode(true);
                             $routeProvider
                                 .when("/",{
-                                    templateUrl:"angular-app/Home-page/home.html",
+                                    templateUrl:"angular-app/Home-page/home.html", 
+                                    controller:"homeController",
+                                    controllerAs:"vm",
                                     access:{
                                         restricted:false
                                     }
@@ -32,8 +35,26 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                                         restricted:false
                                     }
                                 }) 
+                                 .when("/hotels/:id/rooms", {
+                                    templateUrl:"angular-app/hotel-display/hotel-rooms.html",
+                                    controller:"hotelroomsController",
+                                    controllerAs:"vm",
+                                    access:{
+                                        restricted:false
+                                    }
+                                })
+                                 .when("/hotels/:id/update", {
+                                    templateUrl:"angular-app/hotel-display/hotel-update.html",
+                                    controller:"hotelUpdateController",
+                                    controllerAs:"vm",
+                                    access:{
+                                        restricted:false
+                                    }
+                                }) 
                                 .when("/profile", {
                                     templateUrl:"angular-app/profile/profile.html",
+                                    controller:"profileController",
+                                    controllerAs:"vm",
                                     access:{
                                         restricted:true
                                     }

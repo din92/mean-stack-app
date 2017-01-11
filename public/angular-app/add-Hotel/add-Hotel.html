@@ -2,7 +2,7 @@
 <!--addHotelctrl-->
 <div>
     <form ng-submit="addHotelctrl.addHotel()">
-        <table class="table">
+        <table class="table" style = "background: 222">
             <tbody>
                 <tr>
                     <td>
@@ -27,7 +27,7 @@
                         <h4>Services</h4>
                     </td>
                     <td> 
-                    <div>
+                    
                         <select multiple ng-model="addHotelctrl.services" ng-change="addHotelctrl.genData(addHotelctrl.services)"class="form-control">
                         <option value="Room Service"> Room Service</option>
                         <option value="24-hour front desk"> 24-hour front desk</option>
@@ -48,8 +48,8 @@
                         <option value="VIP room facilitiese"> VIP room facilities</option>
                         <option value="Bridal suite"> Bridal suite</option>
                         </select>
-                    </div>
-                        <div><textarea cols="30" rows="10" ng-model="addHotelctrl.servicesData"></textarea></div>
+                    
+                       <textarea cols="150" rows="3" ng-model="addHotelctrl.servicesData"></textarea>
                     </td>
                 </tr>
                 <tr>

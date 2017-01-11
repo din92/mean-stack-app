@@ -13,14 +13,17 @@ app.factory("AuthInterceptor",function($window,$q,AuthFactory,$location){
          return request;
     }
     function response(response){
-        console.log(response);
-
         if(response.status === 200 && $window.sessionStorage.token && !AuthFactory.isloggedIn){
             AuthFactory.isloggedIn=true;
+            if(response.data.admin)
+            {
+                AuthFactory.isAdmin = true;
+            }
         }
         if(response.status===401){ 
             AuthFactory.isloggedIn=false;
         }
+        
         return response || $q.when(response);
     }
     function responseError(rejection){

@@ -225,7 +225,7 @@ if(req.body && req.body.name && req.body.stars)
     });
 }
 else{
-  console.log(req.body+" "+req.body.name+" "+redq.body.stars)
+  console.log(req.body+" "+req.body.name+" "+req.body.stars)
   console.log("Data  Cannot be stored");
   res
     .status(400)
@@ -264,7 +264,7 @@ module.exports.updateHotel = function(req,res){
         .json({"message":" hotel not found for the id: "+id});
      }
      else{
-        doc.name = req.body.name;
+        doc.name = req.body.hname;
         doc.stars = parseInt(req.body.stars);
         doc.services = _splitArray(req.body.services);
         doc.description = req.body.description;
@@ -276,7 +276,7 @@ module.exports.updateHotel = function(req,res){
      }
      doc.save(function(err,updatedHotel){
         if(err)
-        {
+        { console.log("Error in updating "+err);
           res
           .status(500)
           .json(err);

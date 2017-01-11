@@ -23,12 +23,12 @@ process.on("SIGTERM",function(){
         process.exit(0);
     });
 });
-process.on("SIGUSR2",function(){
-    mongoose.connection.close(function () {
-        console.log("Mongoose disconnected through app termination");
-        process.kill(process.id,"SIGUSR2");
-    });
-});
+// process.on("SIGUSR2",function(){
+//     mongoose.connection.close(function () {
+//         console.log("Mongoose disconnected through app termination");
+//         process.kill(process.id,"SIGUSR2");
+//     });
+// });
 
 require("./hotel-model.js");
 require("./Usermodel.js");
