@@ -40,6 +40,11 @@ vm.login = function(){
         }).catch(function(err){
             if(err.status===404)
             vm.unauthorized =true;
+            setTimeout(function(){
+                vm.unauthorized =false;
+                $route.reload();
+            },2000);
+            
         });
     }
 }

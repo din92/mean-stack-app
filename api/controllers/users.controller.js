@@ -109,7 +109,7 @@ usermodel
 			res.status(200).json(result);
 		}
 			else{
-				console.log("Unauthorized");
+				console.log("Unauthorized login");
 			res.status(401).json({"message":"Unauthorized log in"});
 			}
 		}

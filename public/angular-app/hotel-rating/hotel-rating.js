@@ -5,7 +5,7 @@
 //      restrict: 'E',
 //      template: '<span ng-repeat="star in hotelDatactrl.stars track by $index" class="glyphicon glyphicon-star">{{ star }}</span>',
 //      bindToController: true,
-//      controller: 'hotelDataController',
+//      controller: 'hotelDataController', 
 //      controllerAs: 'hotelDatactrl',
 //     scope: {
 //        stars: '@'

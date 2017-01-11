@@ -4,7 +4,7 @@ var app  = angular.module("meanHotel",["ngRoute","angular-jwt"]).run(run)
                        $locationProvider.html5Mode(true);
                             $routeProvider
                                 .when("/",{
-                                    templateUrl:"angular-app/Home-page/home.html",
+                                    templateUrl:"angular-app/Home-page/home.html", 
                                     controller:"homeController",
                                     controllerAs:"vm",
                                     access:{

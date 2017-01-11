@@ -16,7 +16,7 @@
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    align-content: center;
+    text-align: center;
     height: 90px;
     background-color:#2b3e50;
     background: #f5f5f5;

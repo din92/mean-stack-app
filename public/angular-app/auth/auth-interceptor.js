@@ -23,6 +23,7 @@ app.factory("AuthInterceptor",function($window,$q,AuthFactory,$location){
         if(response.status===401){ 
             AuthFactory.isloggedIn=false;
         }
+        
         return response || $q.when(response);
     }
     function responseError(rejection){
