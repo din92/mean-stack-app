@@ -16,6 +16,11 @@ var userSchema = new mongoose.Schema({
 	admin:{
 		type:Boolean,
 		default:false
-	}
+	},
+	provider:{
+		type:String
+	},
+	facebook:{},
+	twitter:{}
 });
 mongoose.model("User",userSchema)

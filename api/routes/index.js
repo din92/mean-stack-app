@@ -4,6 +4,22 @@ var router = app.Router();
 var ctrlHotels = require("../controllers/hotel.controller.js");
 var ctrlReviews = require("../controllers/review.controller.js");
 var ctrlUser = require("../controllers/users.controller.js");
+var ctrlAuth = require("../controllers/auth.controller")
+var passport = require("passport");
+
+router
+      .get("/auth/facebook",ctrlAuth.setupFacebook,passport.authenticate('facebook',{
+        successRedirect: '/hotels',
+        failureRedirect: '/',
+        session:false,
+      },ctrlAuth.setTokenCookie));
+router
+      .get("/auth/twitter",ctrlAuth.setupTwitter,passport.authenticate('twitter',{
+        successRedirect: '/hotels',
+        failureRedirect: '/',
+        session:false,
+      },ctrlAuth.setTokenCookie));
+
 router
   .route('/hotels')
   .get(ctrlHotels.GetAllHotels)
