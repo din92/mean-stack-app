@@ -10,5 +10,6 @@ In the root folder run:
 - nodemon app 
 OR 
 - nodemon app.js
+OR npm start
 
 And navigate to http://localhost:3000
