@@ -63,6 +63,13 @@ vm.isActiveTab = function(url) {
 
 vm.loginOauth = function(provider){
      $window.location.href = '/auth/' + provider;
+    /* $http.get("/auth/"+provider).then(function(response){
+         console.log(repsonse.data);
+     })
+     .catch(function(error){
+         console.log(error);
+     })*/
+     
     //  $http.get("/auth/"+provider).then(function(response){
     //       if(response.status===200){
     //             $window.sessionStorage.token = response.data.token;

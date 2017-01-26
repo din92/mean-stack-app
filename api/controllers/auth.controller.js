@@ -1,11 +1,24 @@
 var mongoose = require("mongoose");
 var usermodel = mongoose.model("User");
+var bcrypt = require("bcrypt");
 var passport = require("passport");
 var facebookStrategy = require("passport-facebook").Strategy
 var TwitterStrategy = require("passport-twitter").Strategy
 var jwt = require("jsonwebtoken")
 
-module.exports.setupFacebook = function () {
+
+module.exports.setupFacebook = function (config) {
+       passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+    // used to deserialize the user
+    passport.deserializeUser(function(id, done) {
+        usermodel.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
+    
     passport.use(new facebookStrategy({
         clientID: config.facebook.clientID,
         clientSecret: config.facebook.clientSecret,
@@ -16,24 +29,36 @@ module.exports.setupFacebook = function () {
                 "facebook.id": profile.id
             })
                 .exec(function (err, user) {
-                    if (err) return done(err);
+                    if (err) {
+                        console.log("Hi error generated herre"+err);
+                        return done(err);}
                     if (!user) {
+                        console.log(profile.displayName.split(" ")[0]);
                         user = new usermodel({
-                            name: profile.givenName + " " + profile.familyName,
-                            username: profile.displayName,
+                           // name: profile.givenName + " " + profile.familyName,
+                           name:profile.displayName,
+                            username: profile.displayName.split(" ")[0],
+                            password: bcrypt.hashSync(profile.displayName.split(" ")[0],bcrypt.genSaltSync(10)),
                             provider: 'facebook',
                             admin: false,
                             facebook: profile._json
 
-                        })
+                        });
                         user.save(function (err, saved) {
-                            if (err)
+                            if (err){
+                                console.log("Error saving user:"+ err);
+                                
                                 return done(err);
-                            else return done(err, user);
+                            }
+                                
+                            else {
+                                console.log(saved);
+                                return done(err, saved)};
 
                         })
                     }
                     else {
+                        console.log("Already there" + user);
                         return done(err, user);
                     }
                 })
@@ -41,7 +66,19 @@ module.exports.setupFacebook = function () {
     ))
 }
 
-module.exports.setupTwitter = function () {
+module.exports.setupTwitter = function (config) {
+     // used to serialize the user for the session
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+    // used to deserialize the user
+    passport.deserializeUser(function(id, done) {
+        usermodel.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
+    
     passport.use(new TwitterStrategy({
         consumerKey: config.twitter.clientID,
         consumerSecret: config.twitter.clientSecret,
@@ -57,6 +94,7 @@ module.exports.setupTwitter = function () {
                         user = new usermodel({
                             name: profile.displayName,
                             username: profile.username,
+                             password: bcrypt.hashSync(profile.username,bcrypt.genSaltSync(10)),
                             provider: 'twitter',
                             admin: false,
                             twitter: profile._json
@@ -76,8 +114,10 @@ module.exports.setupTwitter = function () {
         }
     ))
 }
-module.exports.setTokenCookie=function(req, res) {
-  if (!req.user) return res.json(404, { message: 'Something went wrong, please try again.'});
+module.exports.setToken=function(req, res) {
+    console.log("request is "+req);
+    console.log("response is "+res);
+  if (!req.user)  res.status(404).json({ message: 'Something went wrong, please try again.'});
   var token = jwt.sign({username:req.user.username},"asdsa",{ expiresIn:3600});
   var result = {
 				token:token,
